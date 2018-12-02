@@ -9,7 +9,7 @@
 import UIKit
 
 class TADOOListViewController: UITableViewController {
-    let itemArray = ["cell1","cell1","cell2"]
+    var itemArray = ["cell1","cell1","cell2"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +43,34 @@ class TADOOListViewController: UITableViewController {
         }else {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         }
-        
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
 
-    
-    
+    //MARK - Add New Items
+   
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField() //initilise it to an empty textfield
+        
+        let alert = UIAlertController(title: "Add New TADOO Item", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+            //when add item is pressed.
+            self.itemArray.append(textField.text!)
+            self.tableView.reloadData()
+            
+        }
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create new item"
+            textField = alertTextField
+            
+        }
+        alert.addAction(action)
+        present(alert, animated: true,completion: nil)
+        
+        
+    }
 }
 
