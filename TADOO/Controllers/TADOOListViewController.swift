@@ -11,29 +11,16 @@ import UIKit
 class TADOOListViewController: UITableViewController {
     
     var itemArray = [Item]()                        // link to data model - item.swift
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
-    let defaults = UserDefaults.standard            // connecting user defaults in a constant - retrieve and run actions through new constant : defaults
+//    let defaults = UserDefaults.standard            // connecting user defaults in a constant - retrieve and run actions through new constant : defaults
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(dataFilePath)
+        loadItems()
         
-        let newItem1 = Item()
-        newItem1.title = "Find Fike"
-        itemArray.append(newItem1)
-        
-        let newItem2 = Item()
-        newItem2.title = "Find Cammy"
-        itemArray.append(newItem2)
-        
-        let newItem3 = Item()
-        newItem3.title = "Find Loz"
-        itemArray.append(newItem3)
-        
-        if let items = defaults.array(forKey: "TodoListArray") as? [Item] {
-            itemArray = items
-        }
-        
-//        example used instead of an array. testing purpose for the data model
+//
     }
 
     //----------------------------------------------------------------------------------------------
@@ -79,7 +66,7 @@ class TADOOListViewController: UITableViewController {
 //            itemArray[indexPath.row].done = false
 //        }
         
-        tableView.reloadData() //very important as it calls all tableview methods again. specifically to re-run cellforRow, to get the checkmark to refresh
+        saveItems()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -99,7 +86,10 @@ class TADOOListViewController: UITableViewController {
             newItem.title = textField.text!
             self.itemArray.append(newItem)
 
-            self.defaults.set(self.itemArray, forKey: "TodoListArray")//save data to plist
+
+            self.saveItems()
+            
+            
             self.tableView.reloadData()
         }
         
@@ -114,5 +104,30 @@ class TADOOListViewController: UITableViewController {
     
     //----------------------------------------------------------------------------------------------
     
+    //MARK - Model Manupulation Methods
+    func saveItems() {
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(itemArray)
+            try data.write(to: dataFilePath!)
+        } catch {
+            print("Error in encoding item, \(error)")
+        }
+        tableView.reloadData()
+    }
+    
+    
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            do {
+            itemArray = try decoder.decode([Item].self, from: data)
+            } catch {
+                print("Error decoding item array \(error)")
+            }
+            
+        }
+            
+    }
 } //End of Class
 
