@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4953BD08DC2000594E834A5E /* Pods_TADOO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE81306E128C410FCED84AC0 /* Pods_TADOO.framework */; };
 		623B2CAA21B451DA00AA000E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623B2CA921B451DA00AA000E /* AppDelegate.swift */; };
 		623B2CAC21B451DA00AA000E /* TADOOListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623B2CAB21B451DA00AA000E /* TADOOListViewController.swift */; };
 		623B2CAF21B451DA00AA000E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 623B2CAD21B451DA00AA000E /* Main.storyboard */; };
@@ -26,6 +27,9 @@
 		623B2CB521B451DC00AA000E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62A0E94221B82D5D0022B390 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		62A0E96521B9C37C0022B390 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		9B7F6C238AD41E1649B08BC5 /* Pods-TADOO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TADOO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TADOO/Pods-TADOO.debug.xcconfig"; sourceTree = "<group>"; };
+		AE81306E128C410FCED84AC0 /* Pods_TADOO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TADOO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB5492B81CB17F90CA9AC1F4 /* Pods-TADOO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TADOO.release.xcconfig"; path = "Pods/Target Support Files/Pods-TADOO/Pods-TADOO.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4953BD08DC2000594E834A5E /* Pods_TADOO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +49,8 @@
 			children = (
 				623B2CA821B451DA00AA000E /* TADOO */,
 				623B2CA721B451DA00AA000E /* Products */,
+				C2D10C567B8CFC94AB00E34E /* Pods */,
+				EB91C14DD0696067B507169D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +109,23 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C2D10C567B8CFC94AB00E34E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9B7F6C238AD41E1649B08BC5 /* Pods-TADOO.debug.xcconfig */,
+				BB5492B81CB17F90CA9AC1F4 /* Pods-TADOO.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EB91C14DD0696067B507169D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AE81306E128C410FCED84AC0 /* Pods_TADOO.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,9 +133,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 623B2CB821B451DC00AA000E /* Build configuration list for PBXNativeTarget "TADOO" */;
 			buildPhases = (
+				1D840A7D1D10B0D591AEC319 /* [CP] Check Pods Manifest.lock */,
 				623B2CA221B451DA00AA000E /* Sources */,
 				623B2CA321B451DA00AA000E /* Frameworks */,
 				623B2CA421B451DA00AA000E /* Resources */,
+				235CCABADA295544E9E7B9A7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,6 +193,55 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D840A7D1D10B0D591AEC319 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TADOO-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		235CCABADA295544E9E7B9A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TADOO/Pods-TADOO-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TADOO/Pods-TADOO-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		623B2CA221B451DA00AA000E /* Sources */ = {
@@ -320,6 +395,7 @@
 		};
 		623B2CB921B451DC00AA000E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B7F6C238AD41E1649B08BC5 /* Pods-TADOO.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -339,6 +415,7 @@
 		};
 		623B2CBA21B451DC00AA000E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB5492B81CB17F90CA9AC1F4 /* Pods-TADOO.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
