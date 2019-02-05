@@ -8,17 +8,21 @@
 
 import UIKit
 import CoreData
-
+import RealmSwift
 
 class CategoryViewController: UITableViewController {
+    
+    let realm = try! Realm()
 
-    var categoryArray = [Category]()
+    var categories : Results<Category>?
     
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext //CORE                                                           
+//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext //CORE                                                           
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadCategories()
         
     }
     
@@ -27,16 +31,14 @@ class CategoryViewController: UITableViewController {
     
     //MARK: - Tableview Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryArray.count
+        return categories?.count ?? 1
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) // Re-Use of old table cells as you scroll
-        
-        let cat = categoryArray[indexPath.row]                                  // put into category constant to shorten words
-        cell.textLabel?.text = cat.name                              // link to data model
-        return cell                                                                              // returns the cell to the table
+        cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet"
+        return cell
     }
     
     
@@ -53,7 +55,7 @@ class CategoryViewController: UITableViewController {
         let destinationVC = segue.destination as! TADOOListViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.selectedCategory = categoryArray[indexPath.row]
+            destinationVC.selectedCategory = categories?[indexPath.row]
         }
         
     }
@@ -69,13 +71,14 @@ class CategoryViewController: UITableViewController {
         
         let action = UIAlertAction(title: "Add Category", style: .default) { (action) in
             //when add item is pressed.
-            let newCategory = Category(context: self.context)
+            
+            let newCategory = Category() //REALM way
+//            let newCategory = Category(context: self.context) - CORE DATA VERSION
             newCategory.name = textField.text!
-            //            newItem.done = false
+//            self.categoryArray.append(newCategory)
             
-            self.categoryArray.append(newCategory)
-            
-            self.saveCategory()
+            //dont need to append like core data, categories-Results global variable auto updates
+            self.save(category: newCategory)
         }
         
         alert.addTextField { (alertTextField) in
@@ -89,10 +92,13 @@ class CategoryViewController: UITableViewController {
         
     }
     
-    func saveCategory() {
-        
+    //REALM SAVE
+    func save(category: Category) {
         do {
-            try context.save()
+            //            try context.save() - OLD CORE DATA WAY
+            try realm.write {
+                realm.add(category)
+            }
         } catch {
             print("Error saving content \(error)")
         }
@@ -100,16 +106,11 @@ class CategoryViewController: UITableViewController {
     }
     
     
-    func loadItems(with request : NSFetchRequest<Category> = Category.fetchRequest()) { //with is for external param usage-see search bar - request is internal - see below
-        
-        do {
-            categoryArray = try context.fetch(request)
-        } catch {
-            print("Error fetching data \(error)")
-        }
-        
-        tableView.reloadData()
-        
+    
+    // REALM FETCH
+    func loadCategories() {
+        categories = realm.objects(Category.self)
     }
+
 
 }

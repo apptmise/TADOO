@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,20 +17,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-//        print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String)
-//        
+        
+        print(Realm.Configuration.defaultConfiguration.fileURL)//lolcation of realm file
+        //Creat brand new REALM DB-
+    
+        
+        do {
+            let realm = try Realm()
+        } catch {
+            print("error creating new realm \(error)")
+        }
+        
         return true
     }
 //                            =====================================
 
     func applicationWillTerminate(_ application: UIApplication) {
-        self.saveContext()
+//        self.saveContext()
     }
     
     // MARK: - Core Data stack =====================================
     
-    lazy var persistentContainer: NSPersistentContainer = {
+    var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "DataModel")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {

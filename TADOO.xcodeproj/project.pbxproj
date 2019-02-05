@@ -13,8 +13,10 @@
 		623B2CAF21B451DA00AA000E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 623B2CAD21B451DA00AA000E /* Main.storyboard */; };
 		623B2CB121B451DC00AA000E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 623B2CB021B451DC00AA000E /* Assets.xcassets */; };
 		623B2CB421B451DC00AA000E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 623B2CB221B451DC00AA000E /* LaunchScreen.storyboard */; };
-		62A0E94321B82D5D0022B390 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62A0E94121B82D5D0022B390 /* DataModel.xcdatamodeld */; };
 		62A0E96621B9C37C0022B390 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A0E96521B9C37C0022B390 /* CategoryViewController.swift */; };
+		A8A878862209C6F6000F9C80 /* SwipeCellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A878852209C6F6000F9C80 /* SwipeCellTableViewController.swift */; };
+		A8B4C27E22087F17003D0597 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B4C27D22087F17003D0597 /* Item.swift */; };
+		A8B4C28022087F20003D0597 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B4C27F22087F20003D0597 /* Category.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +27,11 @@
 		623B2CB021B451DC00AA000E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		623B2CB321B451DC00AA000E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		623B2CB521B451DC00AA000E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		62A0E94221B82D5D0022B390 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		62A0E96521B9C37C0022B390 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		9B7F6C238AD41E1649B08BC5 /* Pods-TADOO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TADOO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TADOO/Pods-TADOO.debug.xcconfig"; sourceTree = "<group>"; };
+		A8A878852209C6F6000F9C80 /* SwipeCellTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCellTableViewController.swift; sourceTree = "<group>"; };
+		A8B4C27D22087F17003D0597 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		A8B4C27F22087F20003D0597 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		AE81306E128C410FCED84AC0 /* Pods_TADOO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TADOO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5492B81CB17F90CA9AC1F4 /* Pods-TADOO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TADOO.release.xcconfig"; path = "Pods/Target Support Files/Pods-TADOO/Pods-TADOO.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +82,9 @@
 		62A0E93D21B58A320022B390 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				62A0E94121B82D5D0022B390 /* DataModel.xcdatamodeld */,
+				A8B4C27F22087F20003D0597 /* Category.swift */,
+				A8B4C27D22087F17003D0597 /* Item.swift */,
+				A8A878852209C6F6000F9C80 /* SwipeCellTableViewController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -228,6 +234,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-TADOO/Pods-TADOO-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -235,6 +242,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -248,10 +256,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8B4C27E22087F17003D0597 /* Item.swift in Sources */,
 				62A0E96621B9C37C0022B390 /* CategoryViewController.swift in Sources */,
 				623B2CAC21B451DA00AA000E /* TADOOListViewController.swift in Sources */,
-				62A0E94321B82D5D0022B390 /* DataModel.xcdatamodeld in Sources */,
 				623B2CAA21B451DA00AA000E /* AppDelegate.swift in Sources */,
+				A8A878862209C6F6000F9C80 /* SwipeCellTableViewController.swift in Sources */,
+				A8B4C28022087F20003D0597 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,19 +465,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		62A0E94121B82D5D0022B390 /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				62A0E94221B82D5D0022B390 /* DataModel.xcdatamodel */,
-			);
-			currentVersion = 62A0E94221B82D5D0022B390 /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 623B2C9E21B451DA00AA000E /* Project object */;
 }
